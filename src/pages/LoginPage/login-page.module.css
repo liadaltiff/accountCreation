@@ -1,0 +1,29 @@
+.LoginPage {
+  text-align: center;
+}
+.title {
+  margin-top: 12rem;
+  font-size: 5rem;
+}
+
+.usernameInput {
+  width: 20%;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.passwordInput {
+  width: 20%;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.loginButton {
+  font-size: 1.5rem;
+  margin-bottom: 5rem;
+}
+
+.errorText {
+  margin-bottom: 5rem;
+  color: red;
+}
