@@ -9,7 +9,6 @@ const HomePage = () => {
   return (
     <div className="App">
       <h1>Welcome back, {loggedInUser.firstName}</h1>
-      {/* console.log("the username is",loggedIn); */}
     </div>
   );
 };
