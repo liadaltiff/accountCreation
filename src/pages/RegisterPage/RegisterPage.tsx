@@ -5,7 +5,11 @@ import classes from "./register-page.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ErrorText = () => {
-  return <h2 className={classes.errorText}>This Username Already Exist</h2>;
+  return (
+    <h2 className={classes.errorText}>
+      The Username Or The Email Already Exist
+    </h2>
+  );
 };
 
 const RegisterPage = () => {

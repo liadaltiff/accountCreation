@@ -16,19 +16,3 @@ export default function App() {
     </>
   );
 }
-
-/*const FetchUser = () => {
-  const [userData, setUserData] = useState<User[]>([]);
-  console.log("User data", userData);
-
-  useEffect(() => {
-    axios
-      .get<User[]>("http://localhost:5000/users")
-      .then((response: AxiosResponse) => {
-        setUserData(response.data);
-      });
-  }, []);
-
-  return <div>{userData.length > 0 && <h1>{userData[1]._id}</h1>}</div>;
-};
-*/
