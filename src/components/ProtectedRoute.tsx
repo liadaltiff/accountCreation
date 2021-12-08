@@ -11,13 +11,13 @@ const ProtectedRoute: React.VFC<ProtectedRouteProps> = ({ role, children }) => {
   const navigate = useNavigate();
   const { loggedInUser } = useContext(UserContext);
 
-  if (loggedInUser.role !== role) {
-    if (loggedInUser.role !== "Admin") {
+  if (loggedInUser?.role !== role) {
+    if (loggedInUser?.role !== "Admin") {
       navigate("/home");
     }
   }
 
-  if (loggedInUser.role === role || loggedInUser.role === "Admin") {
+  if (loggedInUser?.role === role || loggedInUser?.role === "Admin") {
     return children;
   } else {
     return <div></div>;

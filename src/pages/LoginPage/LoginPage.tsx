@@ -10,7 +10,7 @@ const ErrorText = () => {
 };
 
 const LoginPage = () => {
-  const { setLoggedInUser } = useContext(UserContext);
+  const { loggedInUser, setLoggedInUser } = useContext(UserContext);
 
   const { state } = useLocation();
   const { passedUserName, passedPassword } = state ?? {};
@@ -30,13 +30,16 @@ const LoginPage = () => {
 
       if (response.statusText === "OK") {
         setLoggedInUser(response.data);
-        navigate(`/home`);
       }
     } catch (error) {
       console.log(error);
       setIsError(true);
     }
   };
+
+  useEffect(() => {
+    navigate("/home");
+  }, [loggedInUser]);
 
   return (
     <div className="App">

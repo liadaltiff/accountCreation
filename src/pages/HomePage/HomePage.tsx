@@ -44,12 +44,12 @@ type rolesOptions = keyof typeof rolesButtons;
 
 const HomePage = () => {
   const { loggedInUser } = useContext(UserContext);
-  setUserLS(loggedInUser);
+  if (loggedInUser) {
+    setUserLS(loggedInUser);
+  }
   const [role, setRole] = useState<rolesOptions>("Default");
 
-  const buttons = viewButtons(loggedInUser.role);
-
-  console.log("the user name is:", loggedInUser.userName);
+  console.log("the user name is:", loggedInUser?.userName);
 
   useEffect(() => {
     if (loggedInUser) {
@@ -59,7 +59,7 @@ const HomePage = () => {
 
   return (
     <div className="App">
-      <h1>Welcome back, {loggedInUser.firstName}</h1>
+      <h1>Welcome back, {loggedInUser?.firstName}</h1>
       {rolesButtons[role].map((role) => {
         return <RoleButton role={role} />;
       })}
