@@ -7,7 +7,7 @@ import MaleRolePage from "./rolePages/MaleRolePage/MaleRolePage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import FemaleRolePage from "./rolePages/FemaleRolePage/FemaleRolePage";
 import AdminRolePage from "./rolePages/AdminRolePage/AdminRolePage";
-import { useContext, useLayoutEffect } from "react";
+import { useContext, useEffect, useLayoutEffect } from "react";
 import { getUser } from "./api/users";
 import { UserContext } from "./UserContext";
 import { setUserLS } from "./utils/localstorage";
@@ -15,12 +15,18 @@ import { setUserLS } from "./utils/localstorage";
 export default function App() {
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     async function updateUser() {
       const user = await getUser(loggedInUser._id);
       if (user) {
-        setLoggedInUser(user);
+        console.log("loggedInUser", loggedInUser);
+        console.log("user", user);
         setUserLS(user);
+        console.log("loggedInUser", loggedInUser);
+        console.log("user", user);
+        setLoggedInUser(user);
+        console.log("loggedInUser", loggedInUser);
+        console.log("user", user);
       }
     }
     updateUser();

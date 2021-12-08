@@ -4,54 +4,65 @@ import axios, { Axios, AxiosResponse } from "axios";
 import classes from "./home-page.module.css";
 import { UserContext, UserProvider } from "../../UserContext";
 import { setUserLS } from "../../utils/localstorage";
+import { useNavigate } from "react-router-dom";
 
 interface RoleButtonProps {
   role: string;
 }
 
 const RoleButton: React.VFC<RoleButtonProps> = ({ role }) => {
-  return <button>{`you got the ${role} role`}</button>;
+  const navigate = useNavigate();
+
+  return (
+    <button
+      onClick={() => navigate(`/${role}Role`)}
+    >{`you got the ${role} role`}</button>
+  );
 };
+
+function viewButtons(role: string) {
+  switch (role) {
+    case "Admin":
+      return ["Admin", "Male", "Female"];
+    case "Female":
+      return ["Female"];
+    case "Male":
+      return ["Male"];
+    default:
+      return ["Default"];
+  }
+}
+
+const rolesButtons = {
+  Admin: ["Admin", "Male", "Female"],
+  Male: ["Male"],
+  Female: ["Female"],
+  Default: [],
+};
+
+type rolesOptions = keyof typeof rolesButtons;
 
 const HomePage = () => {
   const { loggedInUser } = useContext(UserContext);
   setUserLS(loggedInUser);
+  const [role, setRole] = useState<rolesOptions>("Default");
+
+  const buttons = viewButtons(loggedInUser.role);
 
   console.log("the user name is:", loggedInUser.userName);
 
-  const [isMaleRole, setIsMaleRole] = useState(false);
   useEffect(() => {
-    if (loggedInUser.role === "Male") {
-      setIsMaleRole(true);
-    } else {
-      setIsMaleRole(false);
+    if (loggedInUser) {
+      setRole(loggedInUser.role);
     }
-  });
-
-  const [isFemaleRole, setIsFemaleRole] = useState(false);
-  useEffect(() => {
-    if (loggedInUser.role === "Female") {
-      setIsFemaleRole(true);
-    } else {
-      setIsFemaleRole(false);
-    }
-  });
-
-  const [isAdminRole, setIsAdminRole] = useState(false);
-  useEffect(() => {
-    if (loggedInUser.role === "Admin") {
-      setIsAdminRole(true);
-    } else {
-      setIsAdminRole(false);
-    }
-  });
+  }, [loggedInUser]);
 
   return (
     <div className="App">
       <h1>Welcome back, {loggedInUser.firstName}</h1>
-      {isMaleRole && <RoleButton role="Male" />}
-      {isFemaleRole && <RoleButton role="Female" />}
-      {isAdminRole && <RoleButton role="Admin" />}
+      {rolesButtons[role].map((role) => {
+        return <RoleButton role={role} />;
+      })}
     </div>
   );
 };

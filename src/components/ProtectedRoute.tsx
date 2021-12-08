@@ -1,9 +1,6 @@
 import { ReactElement, useContext, useEffect, useLayoutEffect } from "react";
-import { Route, Router, useNavigate } from "react-router";
-import { PathRouteProps } from "react-router-dom";
-import { getUser } from "../api/users";
+import { useNavigate } from "react-router";
 import { UserContext } from "../UserContext";
-import { setUserLS } from "../utils/localstorage";
 
 interface ProtectedRouteProps {
   role: string;
