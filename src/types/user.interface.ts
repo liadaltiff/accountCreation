@@ -6,4 +6,5 @@ export interface User {
   userName: string;
   password: string;
   favColor: string;
+  role: "Admin" | "Male" | "Female" | "Default";
 }
