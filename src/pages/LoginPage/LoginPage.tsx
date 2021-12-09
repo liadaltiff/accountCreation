@@ -38,7 +38,9 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    navigate("/home");
+    if (loggedInUser) {
+      navigate("/home");
+    }
   }, [loggedInUser]);
 
   return (

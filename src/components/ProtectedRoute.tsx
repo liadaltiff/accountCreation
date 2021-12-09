@@ -11,6 +11,8 @@ const ProtectedRoute: React.VFC<ProtectedRouteProps> = ({ role, children }) => {
   const navigate = useNavigate();
   const { loggedInUser } = useContext(UserContext);
 
+  console.log(loggedInUser);
+
   if (loggedInUser?.role !== role) {
     if (loggedInUser?.role !== "Admin") {
       navigate("/home");
