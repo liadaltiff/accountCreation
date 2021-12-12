@@ -1,10 +1,10 @@
-import React, { createContext, useState } from "react";
+import React, { useContext, createContext, useState } from "react";
 import { User } from "./types/user.interface";
 import { getUserLS } from "./utils/localstorage";
 
 interface UserContextProps {
   loggedInUser: User | undefined;
-  setLoggedInUser: (user: User) => void;
+  setLoggedInUser: (user: User | undefined) => void;
 }
 
 export const UserContext = createContext<UserContextProps>({

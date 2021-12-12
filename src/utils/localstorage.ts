@@ -9,6 +9,10 @@ export function getUserLS(): User | undefined {
   }
 }
 
-export function setUserLS(user: User) {
-  localStorage.setItem("CurrentlyLoggedUser", JSON.stringify(user));
+export function setUserLS(user: User | undefined) {
+  if (user) {
+    localStorage.setItem("CurrentlyLoggedUser", JSON.stringify(user));
+  } else {
+    localStorage.removeItem("CurrentlyLoggedUser");
+  }
 }
